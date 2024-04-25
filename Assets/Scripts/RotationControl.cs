@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class RotationControl : MonoBehaviour
 {
     [SerializeField] private GameObject _pivotPoint; // Reference to the pivot point GameObject
     [SerializeField] private GameObject _player;
@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     void RotateObjects()
     {
         // Rotate the pivot point by 180 degrees around the Z-axis
-        _pivotPoint.transform.Rotate(Vector3.forward, 180f);
+        //_pivotPoint.transform.Rotate(Vector3.forward, 180f);
+        _world.transform.RotateAround(_pivotPoint.transform.position, Vector3.forward, 180f);
     }
 }
 
