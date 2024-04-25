@@ -305,6 +305,14 @@ MonoBehaviour:
   _pivotPoint: {fileID: 2014120127}
   _player: {fileID: 1676579872}
   _world: {fileID: 145766349}
+  _targetRotation: 180
+  _currentRotation: 0
+  _flipping: 0
+  _darkWorld: 0
+  _darkWorldRotation: 180
+  _lightWorld: 0
+  _lightWorldRotation: 0
+  _currentWorld: 0
 --- !u!1 &448619378
 GameObject:
   m_ObjectHideFlags: 0
