@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float _moveDirection = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private bool enableDoubleJump = true;
 
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         float moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput * moveSpeed * _moveDirection, rb.velocity.y);
     }
 
     private void Jump()
@@ -68,13 +69,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void EnablePlayerPhysics(float gravityDirection, float jumpDirection)
+    public void EnablePlayerPhysics(float gravityDirection, float jumpDirection, float moveDir)
     {
         Debug.Log("Physics Enabled");
         jumpForce = jumpDirection;
         if (rb != null)
         {
             rb.gravityScale = gravityDirection;
+            _moveDirection = moveDir;
         }
 
         if (coll != null)

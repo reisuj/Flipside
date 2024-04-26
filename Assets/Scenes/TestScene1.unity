@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a366af4e3c35c754e88161e68a0ebede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1773039788}
   _player: {fileID: 406259201}
   _pivotPoint: {fileID: 1830275541}
   _targetRotation: 180
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  _moveDirection: 1
   jumpForce: 5
   enableDoubleJump: 1
   isGrounded: 0

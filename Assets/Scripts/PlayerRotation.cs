@@ -6,6 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlayerRotation : MonoBehaviour
 {
     //[SerializeField] private PlayerMovement _player;
+    [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _pivotPoint;
     [SerializeField] private float _targetRotation = 180.0f;
@@ -48,6 +49,7 @@ public class PlayerRotation : MonoBehaviour
         while (_isRotating)
         {
             _player.transform.RotateAround(_pivotPoint.transform.position, Vector3.forward, _targetRotation / 10.0f);
+            _camera.transform.RotateAround(_pivotPoint.transform.position, Vector3.forward, _targetRotation / 10.0f);
             _currentRotation += _targetRotation / 10.0f;
             yield return new WaitForSeconds(0.1f);
             if (_currentRotation == _darkWorldRotation)
@@ -56,7 +58,7 @@ public class PlayerRotation : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(0.2f);
-        _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(-1.0f, -5.0f);
+        _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(-1.0f, -5.0f, -1.0f);
         _isLightWorld = false;
         yield return null;
     }
@@ -67,6 +69,7 @@ public class PlayerRotation : MonoBehaviour
         while (_isRotating)
         {
             _player.transform.RotateAround(_pivotPoint.transform.position, Vector3.back, _targetRotation / 10.0f);
+            _camera.transform.RotateAround(_pivotPoint.transform.position, Vector3.back, _targetRotation / 10.0f);
             _currentRotation -= _targetRotation / 10.0f;
             yield return new WaitForSeconds(0.1f);
             if (_currentRotation == _lightWorldRotation)
@@ -75,7 +78,7 @@ public class PlayerRotation : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(0.2f);
-        _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(1.0f, 5.0f);
+        _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(1.0f, 5.0f, 1.0f);
         _isLightWorld = true;
         yield return null;
     }
