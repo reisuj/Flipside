@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 406259201}
   _pivotPoint: {fileID: 1830275541}
+  _targetRotation: 180
   _darkWorldRotation: 180
   _lightWorldRotation: 0
   _currentRotation: 0
@@ -391,7 +392,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &585998964
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +534,7 @@ GameObject:
   - component: {fileID: 1773039789}
   - component: {fileID: 1773039788}
   - component: {fileID: 1773039787}
+  - component: {fileID: 1773039790}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -614,6 +616,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773039790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773039786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57c3ea3a1eea1f45a09678999ae94e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 406259205}
+  smoothSpeed: 1
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &1830275541
 GameObject:
   m_ObjectHideFlags: 0
