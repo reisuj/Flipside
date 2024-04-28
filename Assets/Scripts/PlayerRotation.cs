@@ -4,8 +4,7 @@ using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerRotation : MonoBehaviour
-{
-    //[SerializeField] private PlayerMovement _player;
+{    
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _pivotPoint;
@@ -24,20 +23,18 @@ public class PlayerRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             _pivotPoint.transform.position = new Vector3(_player.transform.position.x, 0, 0);
 
             if (_isLightWorld)
             {
-                _player.GetComponent<PlayerMovement>().DisablePlayerPhysics();
+                _player.GetComponent<PlayerMovement>().DisablePlayerPhysics(0.0f);
                 StartCoroutine(DarkWorldRotate());
             }
             else
             {
-                _player.GetComponent<PlayerMovement>().DisablePlayerPhysics();
+                _player.GetComponent<PlayerMovement>().DisablePlayerPhysics(0.0f);
                 StartCoroutine(LightWorldRotate());
             }
         }
@@ -57,7 +54,6 @@ public class PlayerRotation : MonoBehaviour
                 _isRotating = false;
             }
         }
-        yield return new WaitForSeconds(0.2f);
         _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(-1.0f, -5.0f, -1.0f);
         _isLightWorld = false;
         yield return null;
@@ -77,7 +73,6 @@ public class PlayerRotation : MonoBehaviour
                 _isRotating = false;
             }
         }
-        yield return new WaitForSeconds(0.2f);
         _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(1.0f, 5.0f, 1.0f);
         _isLightWorld = true;
         yield return null;

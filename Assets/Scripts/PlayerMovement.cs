@@ -85,13 +85,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void DisablePlayerPhysics()
+    public void DisablePlayerPhysics(float moveDir)
     {
         Debug.Log("Physics Disabled");
         if (rb != null)
         {
             rb.gravityScale = 0f;
             rb.velocity = Vector2.zero;
+            _moveDirection = moveDir;
         }
 
         if (coll != null)
