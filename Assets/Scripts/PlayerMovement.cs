@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _moveDirection = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private bool enableDoubleJump = true;
+    [SerializeField] private bool isLightWorld;
 
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        isLightWorld = true;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
     }
@@ -55,7 +57,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if ((collision.GetContact(0).normal == Vector2.up) && isLightWorld == true)
+        {
+            isGrounded = true;
+        }
+        if ((collision.GetContact(0).normal == Vector2.down) && isLightWorld == false)
         {
             isGrounded = true;
         }
@@ -69,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    // NOTE: If I am checking world state then I can change below code to be private and change the values when world state changes.
     public void EnablePlayerPhysics(float gravityDirection, float jumpDirection, float moveDir)
     {
         Debug.Log("Physics Enabled");
@@ -99,5 +107,15 @@ public class PlayerMovement : MonoBehaviour
         {
             coll.enabled = false;
         }
+    }
+
+    public void LightWorldActive()
+    {
+        isLightWorld = true;
+    }
+
+    public void DarkWorldActive()
+    {
+        isLightWorld = false;
     }
 }

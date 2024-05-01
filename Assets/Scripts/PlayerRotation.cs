@@ -56,6 +56,7 @@ public class PlayerRotation : MonoBehaviour
         }
         _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(-1.0f, -5.0f, -1.0f);
         _isLightWorld = false;
+        _player.GetComponent<PlayerMovement>().DarkWorldActive();
         yield return null;
     }
 
@@ -75,6 +76,7 @@ public class PlayerRotation : MonoBehaviour
         }
         _player.GetComponent<PlayerMovement>().EnablePlayerPhysics(1.0f, 5.0f, 1.0f);
         _isLightWorld = true;
+        _player.GetComponent<PlayerMovement>().LightWorldActive();
         yield return null;
     }
 }
